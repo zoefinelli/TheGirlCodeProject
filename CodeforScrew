@@ -1,0 +1,6 @@
+Create Event ~
+if(!place_meeting(x,y,objFillerforMainCharacter))
+{
+	instance_destroy()
+	score+=1
+}
