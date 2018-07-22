@@ -1,0 +1,5 @@
+// this is a DRAW event for the friendlies, which will happen once the main character is close to the friendly
+if distance_to_object(main_character) < 50   // decide range number
+{
+	draw_text(140, 200, "here's information about the location!!!")    // team decides what text to put in and where it goes
+}
