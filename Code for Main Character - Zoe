@@ -1,0 +1,93 @@
+STEP EVENT ~
+
+key_left = keyboard_check(vk_left); // checks if the left key was pressed
+// returns 1 or 0
+key_right = keyboard_check(vk_right); // these are booleans
+
+key_jump = keyboard_check_pressed(vk_space); // checks if this has just started to be pressed
+
+// establish a temporary variable -- for one frame
+var move = key_right - key_left;
+
+horizSpeed = move * walkSpeed; // tells you which direction you are walking
+
+verticalSpeed = verticalSpeed +grav; // makes us move in the vertical direction by gravity
+
+// Check if we are jumping
+if(place_meeting(x, y+1, obj_wall)) and (key_jump) {
+verticalSpeed = -8;
+}
+
+// Horizontal Collision
+
+// if at this location, is there a collision?
+
+if(place_meeting (x + horizSpeed, y, obj_wall)) {
+
+// check if there's not a collision when you move closer
+while(!place_meeting(x + sign(horizSpeed), y, obj_wall)){
+	// make sure eventually that this conditions returns false and stops running
+	x = x +sign(horizSpeed);	
+}
+
+
+horizSpeed = 0;
+}
+
+// x is the horizontal component that's a built in variable
+x = x + horizSpeed;
+
+// Vertical Collision
+
+if(place_meeting (x, y + verticalSpeed, obj_wall)) {
+
+while(!place_meeting(x , y + sign(verticalSpeed), obj_wall)){
+
+	y = y +sign(verticalSpeed);	
+}
+
+
+verticalSpeed = 0;
+}
+
+y = y + verticalSpeed;
+
+// Animations
+if (!place_meeting(x, y+1, obj_wall))
+{
+sprite_index = spr_jumping
+image_speed = 0; // because it is not an animation
+if (sign(verticalSpeed) > 0) // means we are moving down
+{
+image_index = 1;
+}
+else
+{
+image_index = 0;
+}
+}
+else
+{
+image_speed = 1
+if(horizSpeed = 0)
+{
+sprite_index = spr_standing2;
+}
+else
+{
+sprite_index = spr_running;
+}
+}
+if(horizSpeed != 0)
+{
+image_xscale = sign(horizSpeed);
+}
+
+CREATE EVENT ~
+
+horizSpeed = 0; // variables
+verticalSpeed =0; //these are zero cause don't want to move at very beginning
+grav = 0.5;
+walkSpeed = 4;
+
+NOTE ~ will have to change names of sprites within code once they are made !!
