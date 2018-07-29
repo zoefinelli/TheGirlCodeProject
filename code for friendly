@@ -1,0 +1,14 @@
+//under event create
+text= "this is what the friendly will say, like go left"
+boxWidth= sprite_get_width(sprite3)
+stringHeight= string_height(text)
+
+//under event draw
+if distance_to_object(object1_player) < 20  
+{
+//drawtext book
+draw_sprite(sprite0,0,x,y)
+//text
+
+draw_text_ext(x,y,text,stringHeight,boxWidth)
+}
