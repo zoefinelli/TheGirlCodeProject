@@ -4,7 +4,7 @@ boxWidth= sprite_get_width(sprite3)
 stringHeight= string_height(text)
 
 //under event draw
-if distance_to_object(object1_player) < 20  
+if distance_to_object(object1_player) < 50  
 {
 //drawtext book
 draw_sprite(sprite0,0,x,y)
